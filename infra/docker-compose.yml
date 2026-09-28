@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: spring-exam-postgres
+    environment:
+      POSTGRES_DB: springexam
+      POSTGRES_USER: springexam
+      POSTGRES_PASSWORD: springexam
+    ports:
+      - "5432:5432"
+    volumes:
+      - spring_exam_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U springexam -d springexam"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  spring_exam_pg:

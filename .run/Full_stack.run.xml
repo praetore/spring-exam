@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Full stack" type="CompoundRunConfigurationType" nameIsGenerated="false">
+    <toRun name="Docker Compose" type="docker-deploy" />
+    <toRun name="Backend" type="MavenRunConfiguration" />
+    <toRun name="Frontend" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>
