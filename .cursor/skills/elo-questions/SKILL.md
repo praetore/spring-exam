@@ -19,8 +19,7 @@ Als `questions.json` ontbreekt: `node frontend/scripts/ensure-questions.mjs` of 
 
 ## Ad-hoc helpers (Pattern 5)
 
-Eenmalige merge-/generate-scripts → **`.temp/`** (niet `scripts/` of `frontend/scripts/`).  
-Voorbeeld batch: `.temp/weak-area-questions.batch.json` + `.temp/merge-weak-area-questions.mjs`.
+Eenmalige merge-/generate-scripts → **`.temp/`** met naam `YYYY-MM-DD-slug.ext` en een korte header (wat + hoe draaien). Geen aparte inventaris.
 
 ## Regels
 

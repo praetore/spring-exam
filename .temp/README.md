@@ -4,19 +4,15 @@ GUARDRAILS **Pattern 5** + SIGN #4.
 
 | Map | Wat |
 |-----|-----|
-| **`.temp/`** | Eenmalige / experimentele agent-helpers (niet committen behalve `.gitkeep`) |
+| **`.temp/`** | Eenmalige / experimentele agent-helpers — **niet committen** (behalve dit README + `.gitkeep`) |
 | **`scripts/`** | Vaste tooling (`append-session-audit.py`) |
-| **`frontend/scripts/`** | Vaste FE-tooling (`ensure-questions.mjs` voor bootstrap) |
+| **`frontend/scripts/`** | Vaste FE-tooling (`ensure-questions.mjs`) |
 
-## Nu hier
+## Conventie (geen aparte inventaris)
 
-| Bestand | Rol |
-|---------|-----|
-| `weak-area-questions.batch.json` | Batch Data/JPA/Actuator-vragen (29-09-2026) |
-| `merge-weak-area-questions.mjs` | Merge batch → `frontend/src/data/questions.json` |
+1. **Bestandsnaam:** `YYYY-MM-DD-korte-slug.ext` (bijv. `2026-09-29-merge-weak-area.mjs`).
+2. **Header** in het script/batch-README (eerste regels): wat het doet + hoe te draaien.
+3. **Ontdekken:** `Get-ChildItem .temp` — geen handmatige `LOCAL.md` (die loopt achter).
+4. Multi-file batch → map `.temp/YYYY-MM-DD-slug/` met één entrypoint + korte `README.md` *in die map* (ook gitignored).
 
-```powershell
-node .temp/merge-weak-area-questions.mjs
-```
-
-Nieuwe ad-hoc scripts: hier toevoegen (liefst met datum in de naam). ≥3 throwaways voor hetzelfde doel → stop en stel vaste `scripts/`-tooling voor.
+≥3 helpers voor hetzelfde doel in één sessie → stop; stel vaste tooling onder `scripts/` voor.

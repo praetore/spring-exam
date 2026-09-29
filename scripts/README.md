@@ -7,7 +7,7 @@ Ad-hoc helpers horen in **`.temp/`** (zie `.temp/README.md`), niet hier (GUARDRA
 | `append-session-audit.py` | Ensure/append plain-text sessielogs onder `.audit/` |
 | `../frontend/scripts/ensure-questions.mjs` | Kopieert `questions.example.json` → `questions.json` indien ontbreekt |
 
-Vraag-batches / eenmalige merges → `.temp/` (bijv. `merge-weak-area-questions.mjs`).
+Vraag-batches / eenmalige merges → `.temp/` (lokaal, niet committen).
 
 ## Session audit
 

@@ -67,7 +67,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 - `.cursor/rules/`, `.cursor/skills/`, `.cursor/hooks/` — Cursor enforcement + how-to
 - `scripts/append-session-audit.py` — sessielog ensure/append
 - `.audit/` — sessielogs (niet committen behalve `.gitkeep`)
-- `.temp/` — **ad-hoc** agent-scripts + batches (niet committen behalve `.gitkeep` / README); zie Pattern 5
+- `.temp/` — ad-hoc scripts (niet committen behalve `.gitkeep` / conventie-README); naam `YYYY-MM-DD-slug` + header
 
 ## Werkafspraken
 
