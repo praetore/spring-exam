@@ -1,0 +1,12 @@
+---
+description: Git commit messages — English, why-focused
+alwaysApply: true
+---
+
+# Commit messages (HARD)
+
+All git commit messages **MUST** be in **English**.
+
+- Imperative, concise, why-focused.
+- Do **not** write Dutch subject/body lines.
+- Do **not** commit `frontend/src/data/questions.json` (gitignored local bank).

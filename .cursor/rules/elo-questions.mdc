@@ -1,0 +1,14 @@
+---
+description: ELO-vragen — verwijs naar skill + schema; questions.json is gitignored
+globs: frontend/src/data/questions.json,frontend/public/schema/*.schema.json
+alwaysApply: false
+---
+
+# ELO-vragen (kort)
+
+Volledige procedure → skill **`elo-questions`**.
+
+- Item-schema: `frontend/public/schema/exam-question.schema.json`
+- Bank-schema: `frontend/public/schema/exam-question-bank.schema.json`
+- Doel: `frontend/src/data/questions.json` (**niet committen**)
+- Seed: `frontend/src/data/questions.example.json`

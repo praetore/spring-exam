@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://praetore.io/schemas/exam-question-bank.json",
+  "title": "SpringExamQuestionBank",
+  "description": "Volledige vragenbank: array van exam-questions. Bestand: frontend/src/data/questions.json (gitignored). Valideer elk item tegen exam-question.schema.json.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "https://praetore.io/schemas/exam-question.json"
+  }
+}

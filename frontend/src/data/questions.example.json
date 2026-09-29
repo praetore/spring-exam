@@ -1,0 +1,149 @@
+[
+  {
+    "id": "ioc-self-invocation",
+    "topic": "ioc",
+    "difficulty": 3,
+    "elo": 1100,
+    "type": "code",
+    "prompt": "Wat gebeurt er als serviceA() @Transactional is en serviceB() vanuit dezelfde class serviceA() aanroept?",
+    "code": "@Service\npublic class OrderService {\n  @Transactional\n  public void serviceA() { /* ... */ }\n\n  public void serviceB() {\n    serviceA(); // self-invocation\n  }\n}",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Er start altijd een nieuwe transactie via de Spring-proxy."
+      },
+      {
+        "id": "b",
+        "text": "De @Transactional-proxy wordt omzeild; er is geen transactionele wrapping."
+      },
+      {
+        "id": "c",
+        "text": "Spring gooit een SelfInvocationException."
+      },
+      {
+        "id": "d",
+        "text": "Alleen read-only mode wordt toegepast."
+      }
+    ],
+    "answer": "b",
+    "explanation": "Self-invocation gaat via this, niet via de proxy. @Transactional (en @Async/@Cacheable) werken dan niet.",
+    "trap": "Veel ontwikkelaars denken dat annotaties altijd ‘magisch’ werken, ook bij interne calls."
+  },
+  {
+    "id": "tx-checked-exception",
+    "topic": "transactions",
+    "difficulty": 3,
+    "elo": 1050,
+    "type": "single",
+    "prompt": "Default @Transactional-gedrag bij een checked Exception die uit de methode bubbelt?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Rollback"
+      },
+      {
+        "id": "b",
+        "text": "Commit (geen rollback)"
+      },
+      {
+        "id": "c",
+        "text": "Spring wrapt altijd naar RuntimeException"
+      },
+      {
+        "id": "d",
+        "text": "Alleen rollback als de Exception een message heeft"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Default rollback alleen bij RuntimeException/Error. Checked exceptions committen, tenzij rollbackFor is gezet.",
+    "trap": "In de praktijk voeg je vaak rollbackFor = Exception.class toe — op het examen telt de default."
+  },
+  {
+    "id": "data-jdbctemplate-role",
+    "topic": "data",
+    "difficulty": 2,
+    "elo": 950,
+    "type": "single",
+    "prompt": "Wat is de primaire rol van JdbcTemplate?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "JPA-entities mappen naar tabellen via annotaties."
+      },
+      {
+        "id": "b",
+        "text": "JDBC-boilerplate verminderen: connecties, statements, exception-vertaling."
+      },
+      {
+        "id": "c",
+        "text": "Automatisch repositories genereren uit interfaces."
+      },
+      {
+        "id": "d",
+        "text": "HTTP-requests naar een database-proxy sturen."
+      }
+    ],
+    "answer": "b",
+    "explanation": "JdbcTemplate wrapt klassieke JDBC: resource-handling en vertaling van SQLException naar Spring DataAccessException.",
+    "trap": "JdbcTemplate verwarren met Spring Data JPA repositories."
+  },
+  {
+    "id": "data-jpa-derived-query",
+    "topic": "data",
+    "difficulty": 3,
+    "elo": 1080,
+    "type": "code",
+    "prompt": "Wat genereert Spring Data voor deze method?",
+    "code": "interface UserRepository extends JpaRepository<User, Long> {\n  List<User> findByEmailIgnoreCase(String email);\n}",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Niets; je moet @Query toevoegen of het compileert niet."
+      },
+      {
+        "id": "b",
+        "text": "Een query die users zoekt op email, case-insensitive."
+      },
+      {
+        "id": "c",
+        "text": "Alleen een count-query, nooit een List."
+      },
+      {
+        "id": "d",
+        "text": "Een native SQL-delete op email."
+      }
+    ],
+    "answer": "b",
+    "explanation": "Derived query methods: findBy + property (+ IgnoreCase) → JPQL/criteria onder water.",
+    "trap": "Elke custom method als “verplicht @Query” zien."
+  },
+  {
+    "id": "boot-actuator-exposure",
+    "topic": "boot",
+    "difficulty": 3,
+    "elo": 1120,
+    "type": "single",
+    "prompt": "In recente Boot-defaults: welke Actuator-endpoints zijn via HTTP vaak wél exposed zonder extra config?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Alle endpoints (*), inclusief env en heapdump."
+      },
+      {
+        "id": "b",
+        "text": "Typisch alleen health (en soms info); rest moet je expliciet exposen."
+      },
+      {
+        "id": "c",
+        "text": "Geen enkel endpoint; Actuator start nooit HTTP."
+      },
+      {
+        "id": "d",
+        "text": "Alleen shutdown."
+      }
+    ],
+    "answer": "b",
+    "explanation": "Web-exposure is beperkt by default (o.a. health). management.endpoints.web.exposure.include regelt de rest.",
+    "trap": "Denken dat * standaard openstaat — security-risico én exam-instinker."
+  }
+]

@@ -1,0 +1,16 @@
+# Indexing only — Agent can still open these if needed.
+
+**/node_modules/
+**/target/
+**/dist/
+**/build/
+**/.idea/
+**/.vscode/
+
+**/package-lock.json
+**/*.map
+
+### Sessielogs — indexeren niet; Agent mag wel appenden (Write) ###
+**/.audit/
+**/.audit/**
+!**/.audit/.gitkeep

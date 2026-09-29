@@ -1,0 +1,45 @@
+---
+description: HARD — volledige redeneer- + toolcall-audit in .audit sessielog
+alwaysApply: true
+---
+
+# Sessielog — volledig redeneerspoor (HARD)
+
+Schrijven **zonder** user-OK (geen commit). Lichte one-liners = fout.
+
+## Pad
+
+`.audit/session-YYYYMMDD-HHMMSS.log` — **één logfile per Cursor-chat**. Hergebruik die file; `sessionStart` → `ensure --session-id`.
+
+Prefer **Write**/append. Fallback:
+
+```powershell
+python scripts/append-session-audit.py ensure --session-id <cursor-session-id>
+python scripts/append-session-audit.py append --user "..." --thought "..." --decision "..." --tool "name=... || why=... || args=... || result=..."
+```
+
+Pointer: `.audit/current`. Env: `SPRING_EXAM_SESSION_AUDIT`. Plain text. **Niet** de hele log in context lezen tenzij nodig.
+
+## Datum
+
+TURN-datum = **vandaag** (user_info / lokale kalender) — nooit een voorbeelddatum kopiëren.  
+Formaat: `=== TURN YYYY-MM-DD HH:MM ===`.
+
+## Elke turn (vóór eindantwoord)
+
+1. Header + `USER`
+2. `THOUGHT` (≥2 bullets)
+3. Elke tool: `name` / `why` / `args` / `result`
+4. `DECISION`
+
+## `why` ≠ `args`
+
+| Veld | Inhoud |
+|------|--------|
+| `why` | Intentie |
+| `args` | Echte parameters (command, pad, flags) |
+| `result` | Korte uitkomst; geen secrets |
+
+## Niet
+
+Secrets/tokens; “later loggen”; committen van `session-*.log`.

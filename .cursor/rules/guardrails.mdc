@@ -1,0 +1,32 @@
+---
+description: Forceert GUARDRAILS.md — .audit, .temp, secrets, local verify
+alwaysApply: true
+---
+
+# Safety — GUARDRAILS.md
+
+Je **MUST** `GUARDRAILS.md` in de **repo-root** lezen en volgen. Elke **SIGN** en universeel pattern = harde constraint.
+
+**Lagen:** GUARDRAILS = stop/MUST. How-to → skills / `.mdc` / `scripts/README.md`.
+
+## Sessielog (Pattern 1) — HARD
+
+1. Log naar `.audit/session-YYYYMMDD-HHMMSS.log` (**één file per Cursor-chat**). Prefer Write; fallback `python scripts/append-session-audit.py`. `.audit/` niet in `.cursorignore`.
+2. Elke turn: `USER` + `THOUGHT` + elke `TOOL` + `DECISION` — zie `session-audit.mdc`.
+3. Geen secrets in logs. Commit geen `.audit/*.log`.
+
+## Ad-hoc scripts (Pattern 5 + SIGN #4)
+
+Eenmalige helpers → **`.temp/`**. Niet in `scripts/` (vaste tooling).
+
+## Auth / secrets (SIGN #1 / #2)
+
+Auth-falen → **stop**. Secrets niet herhalen/committen.
+
+## MCP ontbreekt (SIGN #3)
+
+Direct afbreken; geen fake broninhoud.
+
+## Local verify (SIGN #5)
+
+MUST: project-linters, geen unrelated reformat, geen verzonnen “lokaal OK” → `local-verify.mdc`.

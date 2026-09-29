@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "python .cursor/hooks/session_start.py",
+        "timeout": 20
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "python .cursor/hooks/before_shell_guard.py",
+        "timeout": 30
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": "python .cursor/hooks/before_read_secret.py",
+        "timeout": 20
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": "python .cursor/hooks/post_tool_failure.py",
+        "timeout": 10
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+### Secrets & Credentials ###
+.env
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.jks
+**/id_rsa*
+**/id_ed25519*
+**/credentials.json
+**/secrets.json

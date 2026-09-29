@@ -1,0 +1,25 @@
+---
+description: HARD — respect project lint; local verify before claiming done
+alwaysApply: true
+---
+
+# Lint & lokale verify (HARD)
+
+## Respecteer project-style
+
+- Volg bestaande tooling (oxlint FE, Maven BE). Geen whole-file reformat of unrelated churn.
+
+## Waar commands draaien
+
+| Scope | cwd | Check |
+|-------|-----|-------|
+| Frontend | `frontend/` | `npm run lint` |
+| Backend | `backend/` | `mvn -q -DskipTests compile` of relevante test |
+| AI-tooling only | repo-root | geen FE/BE-lint verplicht |
+
+## Wanneer MUST
+
+Vóór “klaar” na **app-code** wijzigingen:
+
+1. Draai de kleinste relevante check.
+2. Faalt of kan niet → zeg dat expliciet; verzin geen “lokaal OK”.
