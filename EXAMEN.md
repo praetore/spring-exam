@@ -244,7 +244,7 @@ Ook uit het **Servlet**-blok hierboven (zelfde lijst): **Filter**, **HTTP sessio
 
 **ELO-topics:** `security`
 
-**Exam-instinkers Security**
+**Examvalkuilen Security**
 - CSRF niet blind “altijd uit”
 - Method security vergeten te enablen
 - 401 (niet ingelogd) vs 403 (wel ingelogd, geen recht)
@@ -273,7 +273,7 @@ Ook uit het **Servlet**-blok hierboven (zelfde lijst): **Filter**, **HTTP sessio
 
 ---
 
-## Snelle checklist (instinkers)
+## Snelle checklist (examvalkuilen)
 
 | Onderdeel | Let op |
 |-----------|--------|

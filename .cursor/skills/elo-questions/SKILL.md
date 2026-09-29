@@ -2,7 +2,7 @@
 name: elo-questions
 description: >-
   Genereer of merge Spring Exam ELO-meerkeuzevragen in questions.json.
-  Gebruik bij verzoek om vragen, ELO-bank, exam-instinkers, of schema-validatie
+  Gebruik bij verzoek om vragen, ELO-bank, examvalkuilen, of schema-validatie
   van de vragenbank. Topics: ioc, aop, transactions, mvc, testing, security, boot, data.
 ---
 
@@ -25,7 +25,7 @@ Voorbeeld batch: `.temp/weak-area-questions.batch.json` + `.temp/merge-weak-area
 ## Regels
 
 1. Elk object valid t.o.v. item-schema (`additionalProperties: false`, required, topic-enum).
-2. Focus op **instinkers**; Nederlands.
+2. Focus op **examvalkuilen** (veelgemaakte fouten); Nederlands.
 3. Unieke kebab-case `id`. Merge op id — bestaande ids niet stilzwijgend overschrijven tenzij gevraagd.
 4. `answer` ∈ `choices[].id` (of array bij `multi`).
 5. `type: "code"` → vul `code`. Altijd zinvolle `trap`.

@@ -144,6 +144,6 @@
     ],
     "answer": "b",
     "explanation": "Web-exposure is beperkt by default (o.a. health). management.endpoints.web.exposure.include regelt de rest.",
-    "trap": "Denken dat * standaard openstaat — security-risico én exam-instinker."
+    "trap": "Denken dat * standaard openstaat — security-risico én examvalkuil."
   }
 ]

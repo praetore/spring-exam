@@ -82,10 +82,10 @@ export default function App() {
     <div className="app">
       <header className="hero">
         <p className="brand">Spring Exam ELO</p>
-        <h1>Train de instinkers</h1>
+        <h1>Oefen voor Spring Professional</h1>
         <p className="lede">
-          Meerkeuzevragen in de browser. ELO en antwoorden blijven lokaal; Spring oefen je in{' '}
-          <code>backend/</code>.
+          Examengerichte meerkeuzevragen met ELO-scoring. Voortgang blijft lokaal in de browser;
+          Spring-concepten oefen je in <code>backend/</code>.
         </p>
       </header>
 
@@ -193,7 +193,7 @@ export default function App() {
               <p>{result.explanation}</p>
               {result.trap && (
                 <p className="trap">
-                  <strong>Instinker:</strong> {result.trap}
+                  <strong>Valkuil:</strong> {result.trap}
                 </p>
               )}
               <button type="button" className="primary" onClick={() => loadQuestion(topic)}>
