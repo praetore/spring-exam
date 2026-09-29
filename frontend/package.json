@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/ensure-questions.mjs",
+    "prebuild": "node scripts/ensure-questions.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",

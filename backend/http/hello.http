@@ -1,0 +1,5 @@
+### Sandbox-check: draait de backend?
+# Environment: local
+
+### Hello
+GET {{host}}/api/hello

@@ -1,0 +1,40 @@
+### Singleton vs application — waar zit het verschil?
+# Environment: local
+#
+# Kern:
+# - Beide zijn "één instance voor de app" vanuit Spring gezien.
+# - Application-scope wordt ÓÓK op de ServletContext gezet.
+# - Singleton staat daar NIET → ruwe Servlet-code kan hem niet zomaar vinden.
+
+### 1. Vergelijk via Spring én via ServletContext
+# viaSpring: beide gevuld
+# viaServletContext.scopedTarget.applicationNotice: gevuld
+# viaServletContext.singletonNotice: null  ← onderscheid
+# @name scopeDiff
+GET {{host}}/api/shop/scope-diff
+Accept: application/json
+
+### 2. Wijzig beide teksten
+# @name updateNotices
+POST {{host}}/api/shop/scope-diff/notices
+Content-Type: application/json
+Accept: application/json
+
+{
+  "singletonText": "ik-ben-singleton",
+  "applicationText": "ik-ben-application"
+}
+
+### 3. Opnieuw vergelijken
+# application-tekst is zichtbaar in ServletContext; singleton blijft daar null
+# @name scopeDiffAgain
+GET {{host}}/api/shop/scope-diff
+Accept: application/json
+
+### 4. Zelfde waarheid zonder Spring DI (ruwe Filter)
+# Deze URL wordt door een Servlet Filter beantwoord die ALLEEN ServletContext leest.
+# applicationNotice: wel aanwezig
+# singletonNotice: null
+# @name fromServletContextOnly
+GET {{host}}/api/shop/scope-diff/from-servlet-context
+Accept: application/json

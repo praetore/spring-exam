@@ -1,59 +1,76 @@
 # AGENTS.md — Spring Exam ELO
 
+## Agent config lagen
+
+| Laag | Bestand | Rol |
+|------|---------|-----|
+| Wet | [`GUARDRAILS.md`](GUARDRAILS.md) | Stopregels / blast radius (MUST + SIGN pointers) |
+| Onboarding | deze `AGENTS.md` | Projectdoel, layout, workflows (**Nederlands**) |
+| Patterns | [`AGENTIC-PATTERNS.md`](AGENTIC-PATTERNS.md) | Wat we al doen vs potentieel (inspiratie: rws) |
+| Cursor | `.cursor/rules/*.mdc`, `.cursor/skills/`, hooks | Auto-apply + how-to |
+
+**Taal:** AI-toolingdocs = **Nederlands**. Git-commitmessages = **Engels** (`commit-messages.mdc`).  
+Datums in docs: **dd-mm-jjjj**; TURN-headers in audit = ISO `YYYY-MM-DD`.
+
+Harde MUST’s staan in `GUARDRAILS.md`. How-to → skills / rules / `scripts/README.md` — niet alles in GUARDRAILS verdubbelen.
+
+---
+
 ## Doel van dit project
 
-Dit project is een **fullstack ELO** voor het Spring-examen: oefenomgeving om examengerichte kennis op te bouwen (geen productie-app).
+Examenvoorbereiding in twee lagen:
 
-Volledig overzicht van examenonderdelen: [`EXAMEN.md`](EXAMEN.md).
+| Laag | Pad | Rol |
+|------|-----|-----|
+| **ELO-quiz** | `frontend/` | Alle examenvragen, scoring, ELO (lokaal in de browser) |
+| **Spring-sandbox** | `backend/` | Code om Spring-concepten te oefenen (geen quiz-API) |
+| **Infra** | `infra/` | Optioneel Postgres wanneer je data/TX in de sandbox oefent |
 
-## Architectuur
+Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](EXAMEN.md).
 
-| Laag | Pad | Tech | Rol |
-|------|-----|------|-----|
-| Backend | `backend/` | Spring Boot 3.5 / Java 21 / JPA | API, schema-validatie, scoring, ELO in Postgres |
-| Frontend | `frontend/` | Vite + React + TypeScript | Quiz-UI, Ajv view-validatie |
-| Infra | `infra/` | Docker Compose | Postgres (lokaal) |
-| Data | `backend/src/main/resources/questions/` + `schema/` | JSON + JSON Schema | Vragenbron |
+## Workflow voor agents
 
-JWT/auth is **nog niet** nodig voor de lokale single-player ELO; daarom geen JWT-service in Compose.
+1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
+2. **Spring oefenen:** op verzoek demo-code in `backend/` (controllers, beans, TX, AOP, …). Houd voorbeelden klein en examgericht.
+3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
+4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
+5. **Ad-hoc scripts:** `.temp/` — vaste tooling in `scripts/` of `frontend/scripts/`.
 
-### API (kort)
+## Frontend (ELO)
 
-- `GET /api/elo` — spelerstatus (Postgres)
-- `POST /api/elo/reset` — reset rating
-- `GET /api/topics` — topics
-- `GET /api/questions/next?topic=` — volgende vraag (zonder antwoord)
-- `POST /api/answers` — `{ questionId, choiceIds }` → uitslag + ELO-delta
-- `GET /api/schema` — exam-question JSON Schema
+- Vite + React + TypeScript + Ajv
+- Vragen (lokaal): `frontend/src/data/questions.json` (gitignore)
+- Seed: `frontend/src/data/questions.example.json` → `npm run predev` / Vite-plugin kopieert indien ontbreekt
+- Schema: `frontend/public/schema/exam-question.schema.json` (+ bank-schema)
+- ELO-state: `localStorage` (`spring-exam-elo`)
+- Start: `cd frontend && npm run dev` → http://localhost:5173
 
-### Lokaal draaien
+## Backend (sandbox)
 
-IntelliJ run configs (`.run/`): **Docker Compose**, **Backend**, **Frontend**, of **Full stack**.
+- Java 21 / Spring Boot 3.5 / Maven
+- Startpunt: `HelloController` (`GET /api/hello`); shop-demo: `shop/` (bean scopes)
+- HTTP Client: `backend/http/*.http` (environment **local**)
+- Start: IntelliJ **Backend** (`mvn spring-boot:run`) of `cd backend && mvn spring-boot:run`
+- Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
-```bash
-# infra (optioneel handmatig; backend start Compose ook via spring-boot-docker-compose)
-cd infra && docker compose up -d
+## IntelliJ run configs (`.run/`)
 
-# backend
-cd backend && mvn spring-boot:run
+- **Frontend** — ELO-quiz
+- **Backend** — Maven `spring-boot:run` (sandbox)
+- **Docker Compose** — Postgres indien nodig voor sandbox-oefeningen
+- **Full stack** — alle drie
 
-# frontend
-cd frontend && npm install && npm run dev
-```
+## Layout (AI-tooling)
 
-Frontend: http://localhost:5173 (proxy `/api` → `:8080`).
-
-## Hoe agents dit project moeten behandelen
-
-- Behandel code, uitleg en oefeningen als **examvoorbereiding**.
-- Focus: IoC, bean lifecycle, AOP, transactions, MVC/REST, testing, Security, Spring Boot.
-- Benadruk **instinkers** (proxies/self-invocation, rollback-defaults, property precedence, slices, enz.).
-- Nieuwe vragen: voeg toe aan `backend/src/main/resources/questions/questions.json`, volg het schema.
-- Houd voorbeelden klein; geen enterprise-boilerplate zonder leerrendement.
-- Vermeld Boot 3 / Spring 6 vs ouder exammateriaal (5.3 / Boot 2.x) als antwoorden kunnen verschillen.
+- `GUARDRAILS.md`, `AGENTIC-PATTERNS.md`, `AGENTS.md` — constitutie / inventaris / onboarding
+- `.cursor/rules/`, `.cursor/skills/`, `.cursor/hooks/` — Cursor enforcement + how-to
+- `scripts/append-session-audit.py` — sessielog ensure/append
+- `.audit/` — sessielogs (niet committen behalve `.gitkeep`)
+- `.temp/` — **ad-hoc** agent-scripts + batches (niet committen behalve `.gitkeep` / README); zie Pattern 5
 
 ## Werkafspraken
 
-- Spring-code hoort in `backend/`; infra in `infra/`; UI in `frontend/`.
-- Wijzigingen dienen het leerdoel of de ELO-flow.
+- Wijzigingen dienen examenleren: ELO-vraag of sandbox-demo.
 - Geen productieconcerns tenzij het examonderwerp is.
+- Geen JTA/XA in Docker alleen om TX te oefenen — `@Transactional` + eventueel Postgres volstaat.
+- Commit/push alleen op verzoek van de gebruiker.

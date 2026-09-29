@@ -36,6 +36,19 @@ build/
 ### Frontend (Vite) ###
 frontend/node_modules/
 frontend/dist/
+# Lokale ELO-vragenbank (schema + example wél in git)
+frontend/src/data/questions.json
+
+### Agent tooling ###
+.audit/*
+!.audit/.gitkeep
+.temp/*
+!.temp/.gitkeep
+!.temp/README.md
+.env
+.env.*
+**/__pycache__/
+.cursor/hooks/__pycache__/
 
 ### VS Code ###
 .vscode/

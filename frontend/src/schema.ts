@@ -1,52 +1,58 @@
 import Ajv2020 from 'ajv/dist/2020.js'
-import type { QuestionView } from './types'
-import { fetchSchema } from './api'
+import type { ErrorObject, ValidateFunction } from 'ajv'
+import type { Question } from './types'
 
+const SCHEMA_ID = 'https://praetore.io/schemas/exam-question.json'
 const ajv = new Ajv2020({ allErrors: true, strict: false })
 
-/** Validates the public question view shape (answer fields are server-only). */
-const viewSchema = {
-  type: 'object',
-  required: ['id', 'topic', 'difficulty', 'elo', 'type', 'prompt', 'choices'],
-  properties: {
-    id: { type: 'string' },
-    topic: { type: 'string' },
-    difficulty: { type: 'integer' },
-    elo: { type: 'integer' },
-    type: { type: 'string', enum: ['single', 'multi', 'code'] },
-    prompt: { type: 'string' },
-    code: { type: ['string', 'null'] },
-    choices: {
-      type: 'array',
-      minItems: 2,
-      items: {
-        type: 'object',
-        required: ['id', 'text'],
-        properties: {
-          id: { type: 'string' },
-          text: { type: 'string' },
-        },
-      },
-    },
-  },
-  additionalProperties: true,
-} as const
+let validateQuestion: ValidateFunction | null = null
+let loading: Promise<ValidateFunction> | null = null
 
-const validateView = ajv.compile(viewSchema)
+export async function loadQuestionValidator(): Promise<ValidateFunction> {
+  if (validateQuestion) return validateQuestion
+  if (loading) return loading
 
-let fullSchemaLoaded = false
+  loading = (async () => {
+    const existing = ajv.getSchema(SCHEMA_ID)
+    if (existing) {
+      validateQuestion = existing as ValidateFunction
+      return validateQuestion
+    }
 
-export async function ensureServerSchema(): Promise<void> {
-  if (fullSchemaLoaded) return
-  const schema = await fetchSchema()
-  // Touch the full exam schema so the client proves /api/schema works.
-  ajv.compile(schema)
-  fullSchemaLoaded = true
+    const response = await fetch('/schema/exam-question.schema.json')
+    if (!response.ok) {
+      throw new Error(`Schema laden mislukt (${response.status})`)
+    }
+    const schema = await response.json()
+
+    const raced = ajv.getSchema(SCHEMA_ID)
+    if (raced) {
+      validateQuestion = raced as ValidateFunction
+      return validateQuestion
+    }
+
+    validateQuestion = ajv.compile(schema)
+    return validateQuestion
+  })()
+
+  try {
+    return await loading
+  } catch (error) {
+    loading = null
+    throw error
+  }
 }
 
-export function assertQuestionView(question: QuestionView): void {
-  if (!validateView(question)) {
-    const details = validateView.errors?.map((e) => `${e.instancePath} ${e.message}`).join('; ')
-    throw new Error(`Question failed client schema check: ${details}`)
+export async function assertQuestions(questions: Question[]): Promise<void> {
+  const validate = await loadQuestionValidator()
+  for (const question of questions) {
+    const questionId = question.id
+    const ok = validate(question as unknown)
+    if (!ok) {
+      const details = (validate.errors as ErrorObject[] | null | undefined)
+        ?.map((e) => `${e.instancePath} ${e.message}`)
+        .join('; ')
+      throw new Error(`Vraag ${questionId} faalt schema: ${details}`)
+    }
   }
 }

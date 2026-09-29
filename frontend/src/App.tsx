@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
-  fetchElo,
-  fetchNextQuestion,
-  fetchTopics,
+  getStatus,
+  getTopics,
+  initBank,
+  nextQuestion,
   resetElo,
   submitAnswer,
-} from './api'
-import { assertQuestionView, ensureServerSchema } from './schema'
+} from './elo'
 import type { AnswerResult, EloStatus, QuestionView } from './types'
 import './App.css'
 
@@ -20,18 +20,14 @@ export default function App() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
-  const loadQuestion = useCallback(async (selectedTopic: string) => {
+  const loadQuestion = useCallback((selectedTopic: string) => {
     setLoading(true)
     setError(null)
     setResult(null)
     setSelected([])
     try {
-      await ensureServerSchema()
-      const next = await fetchNextQuestion(selectedTopic || undefined)
-      assertQuestionView(next)
-      setQuestion(next)
-      const elo = await fetchElo()
-      setStatus(elo)
+      setQuestion(nextQuestion(selectedTopic || undefined))
+      setStatus(getStatus())
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Laden mislukt')
       setQuestion(null)
@@ -43,20 +39,19 @@ export default function App() {
   useEffect(() => {
     void (async () => {
       try {
-        const [elo, topicList] = await Promise.all([fetchElo(), fetchTopics()])
-        setStatus(elo)
-        setTopics(topicList)
-        await loadQuestion('')
+        await initBank()
+        setTopics(getTopics())
+        setStatus(getStatus())
+        loadQuestion('')
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'Backend niet bereikbaar')
+        setError(e instanceof Error ? e.message : 'Vragenbank laden mislukt')
         setLoading(false)
       }
     })()
   }, [loadQuestion])
 
   function toggleChoice(id: string) {
-    if (result) return
-    if (!question) return
+    if (result || !question) return
     if (question.type === 'multi') {
       setSelected((prev) =>
         prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
@@ -66,35 +61,21 @@ export default function App() {
     }
   }
 
-  async function onSubmit() {
+  function onSubmit() {
     if (!question || selected.length === 0) return
-    setLoading(true)
     setError(null)
     try {
-      const answer = await submitAnswer(question.id, selected)
+      const answer = submitAnswer(question.id, selected)
       setResult(answer)
-      setStatus({
-        elo: answer.playerElo,
-        answered: (status?.answered ?? 0) + 1,
-        correct: (status?.correct ?? 0) + (answer.correct ? 1 : 0),
-      })
+      setStatus(getStatus())
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Antwoord mislukt')
-    } finally {
-      setLoading(false)
     }
   }
 
-  async function onReset() {
-    setLoading(true)
-    try {
-      const elo = await resetElo()
-      setStatus(elo)
-      await loadQuestion(topic)
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Reset mislukt')
-      setLoading(false)
-    }
+  function onReset() {
+    setStatus(resetElo())
+    loadQuestion(topic)
   }
 
   return (
@@ -103,7 +84,8 @@ export default function App() {
         <p className="brand">Spring Exam ELO</p>
         <h1>Train de instinkers</h1>
         <p className="lede">
-          Meerkeuzevragen tegen je rating. Schema-gevalideerd, server-side gescoord.
+          Meerkeuzevragen in de browser. ELO en antwoorden blijven lokaal; Spring oefen je in{' '}
+          <code>backend/</code>.
         </p>
       </header>
 
@@ -120,7 +102,7 @@ export default function App() {
           <span className="label">Goed</span>
           <strong className="mono">{status?.correct ?? 0}</strong>
         </div>
-        <button type="button" className="ghost" onClick={() => void onReset()} disabled={loading}>
+        <button type="button" className="ghost" onClick={onReset} disabled={loading}>
           Reset ELO
         </button>
       </section>
@@ -133,7 +115,7 @@ export default function App() {
             onChange={(e) => {
               const value = e.target.value
               setTopic(value)
-              void loadQuestion(value)
+              loadQuestion(value)
             }}
             disabled={loading}
           >
@@ -145,7 +127,7 @@ export default function App() {
             ))}
           </select>
         </label>
-        <button type="button" className="ghost" onClick={() => void loadQuestion(topic)} disabled={loading}>
+        <button type="button" className="ghost" onClick={() => loadQuestion(topic)} disabled={loading}>
           Volgende
         </button>
       </section>
@@ -166,7 +148,9 @@ export default function App() {
             {question.choices.map((choice) => {
               const active = selected.includes(choice.id)
               const showResult = Boolean(result)
-              const isExpected = result?.expected.includes(choice.id)
+              const isExpected = result?.expected
+                .map((id) => id.toLowerCase())
+                .includes(choice.id.toLowerCase())
               let state = ''
               if (showResult && isExpected) state = 'correct'
               else if (showResult && active && !isExpected) state = 'wrong'
@@ -192,7 +176,7 @@ export default function App() {
             <button
               type="button"
               className="primary"
-              onClick={() => void onSubmit()}
+              onClick={onSubmit}
               disabled={loading || selected.length === 0}
             >
               Controleer
@@ -212,7 +196,7 @@ export default function App() {
                   <strong>Instinker:</strong> {result.trap}
                 </p>
               )}
-              <button type="button" className="primary" onClick={() => void loadQuestion(topic)}>
+              <button type="button" className="primary" onClick={() => loadQuestion(topic)}>
                 Volgende vraag
               </button>
             </div>
