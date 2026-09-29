@@ -17,6 +17,11 @@ alwaysApply: true
 | Backend | `backend/` | `mvn -q -DskipTests compile` of relevante test |
 | AI-tooling only | repo-root | geen FE/BE-lint verplicht |
 
+## Smoke-test backend
+
+- `SpringExamApplicationTests` mag alleen `contextLoads` houden (in git).
+- Extra/gegenereerde tests → aparte classes (gitignored); niet in het smoke-bestand.
+
 ## Wanneer MUST
 
 Vóór “klaar” na **app-code** wijzigingen:

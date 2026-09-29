@@ -37,6 +37,9 @@ build/
 # Alles onder het app-package behalve de Boot-entrypoint
 backend/src/main/java/io/praetore/springexam/**
 !backend/src/main/java/io/praetore/springexam/SpringExamApplication.java
+# Tests: alleen de minimale smoke-test in git; overige gegenereerde tests lokaal
+backend/src/test/java/io/praetore/springexam/**
+!backend/src/test/java/io/praetore/springexam/SpringExamApplicationTests.java
 # IntelliJ HTTP Client requests (horen bij lokale demo's)
 backend/http/
 # Runtime resources: map + minimale application.properties in git; rest lokaal

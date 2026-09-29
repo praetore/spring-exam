@@ -41,12 +41,13 @@ SIGNs hier zijn MUST + pointer; procedure niet verdubbelen.
 
 **Allowed (zonder extra goedkeuring):**
 - Read: projectbronnen, tests, docs, `.cursor/`, `scripts/`, schemas
-- Write: frontend/backend binnen de gevraagde scope; `.audit/session-*.log`; `.temp/`; lokale `frontend/src/data/questions.json` (gitignored)
+- Write: frontend/backend binnen de gevraagde scope; `.audit/session-*.log`; `.temp/`; lokale `frontend/src/data/questions.json` (gitignored); lokale sandbox-classes/tests onder `io.praetore.springexam` (gitignored)
 
 **Forbidden / approval required:**
 - Secrets committen (`.env`, tokens, credentials)
 - Destructieve git (`push --force`, hard reset) tenzij de gebruiker dat expliciet vraagt
 - `questions.json` committen (hoort gitignored)
+- `SpringExamApplicationTests` uitbreiden met extra tests (smoke-only in git)
 - `node_modules/`, `.git/` handmatig patchen
 
 **Enforcement:** `.cursor/hooks.json` + `.cursor/hooks/` (secrets read/commit, destructive git); fail-open.

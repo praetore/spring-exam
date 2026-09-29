@@ -31,7 +31,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Workflow voor agents
 
 1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication`). Houd voorbeelden klein en examgericht.
+2. **Spring oefenen:** op verzoek demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication` + minimale `SpringExamApplicationTests`). Houd voorbeelden klein en examgericht. **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
 3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
 5. **Ad-hoc scripts:** `.temp/` — vaste tooling in `scripts/` of `frontend/scripts/`.
@@ -48,8 +48,8 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Backend (sandbox)
 
 - Java 21 / Spring Boot 3.5 / Maven
-- **In git:** `SpringExamApplication.java`, `resources/.gitkeep`, minimale `application.properties` (naam + poort)
-- **Lokaal (gitignored):** overige classes, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
+- **In git:** `SpringExamApplication.java`, `SpringExamApplicationTests.java` (**alleen** `contextLoads` — niet verder vullen), `resources/.gitkeep`, minimale `application.properties` (naam + poort)
+- **Lokaal (gitignored):** overige classes, **overige tests**, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
 - **Conventie:** sandbox-config (JDBC/JPA/Actuator) → `application-local.properties` + Spring profile **`local`** (run config **Sandbox** zet `-Dspring-boot.run.profiles=local`)
 - HTTP Client: `backend/http/` (lokaal; environment **local**)
 - Actieve sandbox-slice: **JDBC** (`jdbc/` + H2 via local-profile) — daarna JPA, daarna Actuator

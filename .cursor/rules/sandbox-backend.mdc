@@ -1,0 +1,26 @@
+---
+description: Backend sandbox — wat in git mag; smoke-test niet uitbreiden
+globs: backend/src/**/*.java,backend/src/main/resources/**,backend/http/**
+alwaysApply: false
+---
+
+# Backend sandbox (HARD)
+
+## In git (niet uitbreiden zonder expliciet verzoek)
+
+- `SpringExamApplication.java` — Boot-entrypoint
+- `SpringExamApplicationTests.java` — **alleen** `contextLoads()`; **geen** extra tests/asserts/mocks in dit bestand
+- `resources/application.properties` — alleen `name` + `port`
+- `resources/.gitkeep`
+
+## Lokaal (gitignored) — hier oefencode / gegenereerde tests
+
+- Overige classes onder `io.praetore.springexam` (jdbc, shop, …)
+- **Nieuwe/gegenereerde tests** → eigen class onder `src/test/java/io/praetore/springexam/…` (niet in `SpringExamApplicationTests`)
+- `application-local.properties`, `schema.sql`/`data.sql`, `backend/http/`
+
+## Agent-gedrag
+
+1. Vul `SpringExamApplicationTests` **niet** verder.
+2. Commit/stage geen gitignored sandbox- of testbestanden.
+3. Sandbox-config → profile `local` / `application-local.properties`.
