@@ -33,6 +33,13 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Backend sandbox (lokaal oefenen) ###
+# Alles onder het app-package behalve de Boot-entrypoint
+backend/src/main/java/io/praetore/springexam/**
+!backend/src/main/java/io/praetore/springexam/SpringExamApplication.java
+# IntelliJ HTTP Client requests (horen bij lokale demo's)
+backend/http/
+
 ### Frontend (Vite) ###
 frontend/node_modules/
 frontend/dist/

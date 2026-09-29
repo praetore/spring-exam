@@ -31,7 +31,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Workflow voor agents
 
 1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek demo-code in `backend/` (controllers, beans, TX, AOP, …). Houd voorbeelden klein en examgericht.
+2. **Spring oefenen:** op verzoek demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication`). Houd voorbeelden klein en examgericht.
 3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
 5. **Ad-hoc scripts:** `.temp/` — vaste tooling in `scripts/` of `frontend/scripts/`.
@@ -48,8 +48,9 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Backend (sandbox)
 
 - Java 21 / Spring Boot 3.5 / Maven
-- Startpunt: `HelloController` (`GET /api/hello`); shop-demo: `shop/` (bean scopes)
-- HTTP Client: `backend/http/*.http` (environment **local**)
+- **In git:** alleen `SpringExamApplication.java` (Boot-entrypoint)
+- **Lokaal (gitignored):** overige classes onder `io.praetore.springexam` + `backend/http/*.http` — oefencode, net als `questions.json`
+- HTTP Client: `backend/http/` (lokaal; environment **local**)
 - Start: IntelliJ **Backend** (`mvn spring-boot:run`) of `cd backend && mvn spring-boot:run`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
