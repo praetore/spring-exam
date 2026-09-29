@@ -48,16 +48,18 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Backend (sandbox)
 
 - Java 21 / Spring Boot 3.5 / Maven
-- **In git:** alleen `SpringExamApplication.java` (Boot-entrypoint)
-- **Lokaal (gitignored):** overige classes onder `io.praetore.springexam` + `backend/http/*.http` — oefencode, net als `questions.json`
+- **In git:** `SpringExamApplication.java`, `resources/.gitkeep`, minimale `application.properties` (naam + poort)
+- **Lokaal (gitignored):** overige classes, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
+- **Conventie:** sandbox-config (JDBC/JPA/Actuator) → `application-local.properties` + Spring profile **`local`** (run config **Sandbox** zet `-Dspring-boot.run.profiles=local`)
 - HTTP Client: `backend/http/` (lokaal; environment **local**)
-- Start: IntelliJ **Backend** (`mvn spring-boot:run`) of `cd backend && mvn spring-boot:run`
+- Actieve sandbox-slice: **JDBC** (`jdbc/` + H2 via local-profile) — daarna JPA, daarna Actuator
+- Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run "-Dspring-boot.run.profiles=local"`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
 ## IntelliJ run configs (`.run/`)
 
-- **Frontend** — ELO-quiz
-- **Backend** — Maven `spring-boot:run` (sandbox)
+- **Oefenexamen** — ELO-quiz (`frontend/`)
+- **Sandbox** — Maven `spring-boot:run` (`backend/`)
 - **Docker Compose** — Postgres indien nodig voor sandbox-oefeningen
 - **Full stack** — alle drie
 

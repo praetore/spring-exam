@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Backend" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="false">
+  <configuration default="false" name="Sandbox" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="false">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
       <option name="myRunnerParameters">
         <MavenRunnerParameters>
-          <option name="cmdOptions" />
+          <option name="cmdOptions" value="-Dspring-boot.run.profiles=local" />
           <option name="profiles">
             <set />
           </option>

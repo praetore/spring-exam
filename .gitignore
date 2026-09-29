@@ -39,6 +39,10 @@ backend/src/main/java/io/praetore/springexam/**
 !backend/src/main/java/io/praetore/springexam/SpringExamApplication.java
 # IntelliJ HTTP Client requests (horen bij lokale demo's)
 backend/http/
+# Runtime resources: map + minimale application.properties in git; rest lokaal
+backend/src/main/resources/**
+!backend/src/main/resources/.gitkeep
+!backend/src/main/resources/application.properties
 
 ### Frontend (Vite) ###
 frontend/node_modules/
