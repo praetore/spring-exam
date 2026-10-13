@@ -31,6 +31,25 @@ Eenmalige merge-/generate-scripts → **`.temp/`** met naam `YYYY-MM-DD-slug.ext
 6. Topic `data` = JDBC + Spring Data JPA; Actuator onder `boot`.
 7. Start-elo vaak ≈ `700 + difficulty * 100`.
 
+## Verwoording (HARD)
+
+Schrijf alsof het een **serieus examen/oefentoets** is — geen chatnotities, geen telegraafstijl.
+
+**Doen**
+- Volledige zinnen: situatieschets (waar nodig) + duidelijke vraag.
+- Neutraal, precies Nederlands; technische termen (`@Primary`, `Optional`) mag.
+- Keuzes als leesbare antwoorden (volledige zin of heldere nominale frase), niet enkel jargon-fragmenten tenzij het fragment zélf het antwoord is (exception-naam).
+- Bij `code`: de prompt mag kort verwijzen naar “onderstaande code”, maar blijft een normale vraagzin.
+
+**Niet**
+- Stenografie: `"Twee beans… Welke bean?"`, `"CSRF meestal?"`, `"Default @Transactional-gedrag bij…?"`
+- Half afgemaakte zinnen of alleen trefwoorden als prompt.
+- “Instinker”-toon of cryptische afkortingen zonder context (`"Spring AOP-proxy TX."` als openingsfragment).
+
+**Voorbeeld**
+- Slecht: `Twee beans van hetzelfde type: één @Primary, injectie met @Qualifier("other"). Welke bean?`
+- Goed: `Er zijn twee beans van hetzelfde type; één is gemarkeerd met @Primary. Injectie gebeurt met @Qualifier("other"). Welke bean wordt geïnjecteerd?`
+
 ## Na genereren
 
 - Schrijf naar `questions.json`, niet naar `.example.json` (tenzij seed-update gevraagd).

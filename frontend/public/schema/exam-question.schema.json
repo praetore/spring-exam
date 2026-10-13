@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://praetore.io/schemas/exam-question.json",
   "title": "SpringExamQuestion",
-  "description": "Eén meerkeuzevraag voor de Spring Exam ELO-quiz. Genereer examengerichte vragen met valkuilen (veelgemaakte fouten), geen trivia. Taal: Nederlands. Antwoord-ids moeten voorkomen in choices.",
+  "description": "Eén meerkeuzevraag voor de Spring Exam ELO-quiz. Genereer examengerichte vragen met valkuilen (veelgemaakte fouten), geen trivia. Taal: Nederlands in volledige examenzinnen (geen telegraaf-/notitiestijl). Antwoord-ids moeten voorkomen in choices.",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "topic", "difficulty", "elo", "type", "prompt", "choices", "answer", "explanation"],

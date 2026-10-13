@@ -52,7 +52,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 - **Lokaal (gitignored):** overige classes, **overige tests**, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
 - **Conventie:** sandbox-config (JDBC/JPA/Actuator) → `application-local.properties` + Spring profile **`local`** (run config **Sandbox** zet `-Dspring-boot.run.profiles=local`)
 - HTTP Client: `backend/http/` (lokaal; environment **local**)
-- Actieve sandbox-slice: **JDBC** (`jdbc/` + H2 via local-profile) — daarna JPA, daarna Actuator
+- Actieve sandbox-slice: **TX** (`tx/` — proxy/self-invocation/rollback; JPA+JDBC blijven beschikbaar) — daarna Actuator
 - Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run "-Dspring-boot.run.profiles=local"`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 

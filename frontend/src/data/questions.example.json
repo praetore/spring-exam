@@ -35,23 +35,23 @@
     "difficulty": 3,
     "elo": 1050,
     "type": "single",
-    "prompt": "Default @Transactional-gedrag bij een checked Exception die uit de methode bubbelt?",
+    "prompt": "Een methode is geannoteerd met @Transactional (defaults). Er bubbelt een checked Exception uit de methode. Wat is het standaardgedrag van de transactie?",
     "choices": [
       {
         "id": "a",
-        "text": "Rollback"
+        "text": "De transactie wordt teruggedraaid (rollback)"
       },
       {
         "id": "b",
-        "text": "Commit (geen rollback)"
+        "text": "De transactie wordt gecommit (geen rollback)"
       },
       {
         "id": "c",
-        "text": "Spring wrapt altijd naar RuntimeException"
+        "text": "Spring wrapt de checked exception altijd naar een RuntimeException"
       },
       {
         "id": "d",
-        "text": "Alleen rollback als de Exception een message heeft"
+        "text": "Er is alleen rollback als de Exception een message heeft"
       }
     ],
     "answer": "b",
@@ -123,7 +123,7 @@
     "difficulty": 3,
     "elo": 1120,
     "type": "single",
-    "prompt": "In recente Boot-defaults: welke Actuator-endpoints zijn via HTTP vaak wél exposed zonder extra config?",
+    "prompt": "Bij recente Spring Boot-defaults: welke Actuator-endpoints zijn via HTTP vaak al exposed zonder extra configuratie?",
     "choices": [
       {
         "id": "a",

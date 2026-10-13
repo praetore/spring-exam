@@ -12,3 +12,4 @@ Volledige procedure → skill **`elo-questions`**.
 - Bank-schema: `frontend/public/schema/exam-question-bank.schema.json`
 - Doel: `frontend/src/data/questions.json` (**niet committen**)
 - Seed: `frontend/src/data/questions.example.json`
+- Verwoording: volledige examenzinnen (zie skill **Verwoording**) — geen telegraaf-/notitiestijl
