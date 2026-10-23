@@ -24,3 +24,4 @@ alwaysApply: false
 1. Vul `SpringExamApplicationTests` **niet** verder.
 2. Commit/stage geen gitignored sandbox- of testbestanden.
 3. Sandbox-config → profile `local` / `application-local.properties`.
+4. **HTTP (`backend/http/*.http`):** bij elke request een `# Opsteken:`-comment met de examles / verwachte uitkomst — zie skill **`sandbox-demo`**.

@@ -26,15 +26,15 @@ Examenvoorbereiding in twee lagen:
 | **Spring-sandbox** | `backend/` | Code om Spring-concepten te oefenen (geen quiz-API) |
 | **Infra** | `infra/` | Optioneel Postgres wanneer je data/TX in de sandbox oefent |
 
-Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](EXAMEN.md).
+Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](EXAMEN.md) — **blijft in repo-root** (syllabus).
 
 ## Workflow voor agents
 
 1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication` + minimale `SpringExamApplicationTests`). Houd voorbeelden klein en examgericht. **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
+2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`** (o.a. `backend/http/` met `# Opsteken:`-comments) + demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication` + minimale `SpringExamApplicationTests`). Houd voorbeelden klein en examgericht. **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
 3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
-5. **Ad-hoc scripts:** `.temp/` — vaste tooling in `scripts/` of `frontend/scripts/`.
+5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (zie `.temp/README.md`). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `frontend/scripts/`.
 
 ## Frontend (ELO)
 

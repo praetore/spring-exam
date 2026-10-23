@@ -19,7 +19,7 @@ Als `questions.json` ontbreekt: `node frontend/scripts/ensure-questions.mjs` of 
 
 ## Ad-hoc helpers (Pattern 5)
 
-Eenmalige merge-/generate-scripts → **`.temp/`** met naam `YYYY-MM-DD-slug.ext` en een korte header (wat + hoe draaien). Geen aparte inventaris.
+Eenmalige merge-/generate-scripts **én** gap-cheatsheets na oefenexamens → **`.temp/`** met naam `YYYY-MM-DD-slug.ext` en een korte header (wat + hoe gebruiken). Geen aparte inventaris. **Niet** in repo-root (`EXAM-CHEATSHEET.md` e.d.). Syllabus blijft `EXAMEN.md` in de root.
 
 ## Regels
 
