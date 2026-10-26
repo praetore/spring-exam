@@ -2,7 +2,8 @@
 name: sandbox-demo
 description: >-
   Spring-exam backend sandbox: demo-code onder io.praetore.springexam,
-  IntelliJ HTTP Client-bestanden in backend/http/, en .temp study-gidsen.
+  IntelliJ HTTP Client-bestanden in backend/.temp/http/, filesystem-XML in
+  backend/.temp/xml/, en root-.temp study-gidsen.
   Gebruik bij nieuwe sandbox-slice, TX/JDBC/JPA/MVC/scopes/actuator-oefenen,
   endpoints, .http request-files, of sandbox study-docs.
 ---
@@ -12,9 +13,10 @@ description: >-
 ## Scope
 
 - Code: `backend/src/main/java/io/praetore/springexam/…` (gitignored behalve `SpringExamApplication`)
-- HTTP: `backend/http/*.http` (gitignored)
-- Config: profile `local` / `application-local.properties`
-- Study-gids: `.temp/YYYY-MM-DD-<slice>-study.md` (gitignored behalve `.temp` README)
+- HTTP: `backend/.temp/http/*.http` (gitignored; `backend/.temp/.gitkeep` wél in git)
+- Filesystem-XML e.d.: `backend/.temp/xml/` (gitignored)
+- Config: profile `local` / `application-local.properties` (resources, gitignored behalve minimale props)
+- Study-gids: repo-root `.temp/YYYY-MM-DD-<slice>-study.md` (gitignored behalve root-`.temp` README)
 - Tests: **niet** in `SpringExamApplicationTests` — aparte (gitignored) testclasses
 - Zie ook rule `sandbox-backend.mdc`
 
@@ -22,7 +24,7 @@ description: >-
 
 Als de gebruiker vraagt om een **nieuwe** sandbox / demo-slice / “vervang de oude”:
 
-1. **Inventariseer** kort wat er nu staat (packages onder `io.praetore.springexam`, `backend/http/*.http`, relevante `.temp/*-study.md`).
+1. **Inventariseer** kort wat er nu staat (packages onder `io.praetore.springexam`, `backend/.temp/http/*.http`, relevante root-`.temp/*-study.md`).
 2. **Vraag eerst** of de bestaande sandbox **weg moet** (code + http + eventueel oude study-gids), of **ernaast** mag blijven.  
    - **Niet** verwijderen tot de gebruiker dat bevestigt (tenzij ze in dezelfde zin al expliciet “verwijder de oude” zeiden).
 3. Bouw daarna de nieuwe slice: praktisch domein, HTTP met leercomments, `application-local` indien nodig.
@@ -33,7 +35,7 @@ Uitbreiden van de *huidige* slice (extra endpoint, fix) → geen “mag de oude 
 
 ## HTTP-bestanden — leercommentaar (HARD)
 
-Bij **aanmaken of uitbreiden** van `backend/http/*.http`:
+Bij **aanmaken of uitbreiden** van `backend/.temp/http/*.http`:
 
 1. Elke request (of logische stap) heeft `#`-comments die uitleggen wat je ziet en waarom (vaak 2–5 regels).
 2. **Natuurlijke taal**, alsof je het aan jezelf uitlegt. Geen labels of steekwoorden als `Opsteken:`, `Leer dit:`, `Exam:`, `Let op:`, `Tip:`.

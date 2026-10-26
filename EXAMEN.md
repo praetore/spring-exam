@@ -37,7 +37,7 @@ Spring MVC/Security bouwen hier bovenop. Even terug in je hoofd:
 | **DispatcherServlet** | front controller: één servlet, delegeert naar controllers | hart van Spring MVC |
 | **Servlet lifecycle** | init → service → destroy; context init/destroy | Boot start/embedded Tomcat |
 
-**Opfris-oefening in dit repo:** `backend/http/scope-diff.http` — singleton vs application via `ServletContext`; shop-demo voor session/request.
+**Opfris-oefening in dit repo:** HTTP-demo’s onder `backend/.temp/http/` (lokaal) wanneer die slice actief is.
 
 Korte mentale modellen:
 

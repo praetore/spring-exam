@@ -31,10 +31,10 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Workflow voor agents
 
 1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`**: demo-code onder `io.praetore.springexam`, `backend/http/` met leercomments, én standaard een `.temp/…-study.md` (architectuur-sjabloon in de skill). Domein: **serieus/praktisch** (zoals ticketdesk-checkout), geen schoolse lesjes-API. Bij een **nieuwe** slice: eerst vragen of de oude sandbox weg moet (tenzij al expliciet gezegd). **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
+2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`**: demo-code onder `io.praetore.springexam`, HTTP in `backend/.temp/http/`, filesystem-XML e.d. in `backend/.temp/xml/`, én standaard een root-`.temp/…-study.md`. Domein: **serieus/praktisch** (zoals ticketdesk-checkout), geen schoolse lesjes-API. Bij een **nieuwe** slice: eerst vragen of de oude sandbox weg moet (tenzij al expliciet gezegd). **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
 3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
-5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (zie `.temp/README.md`). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `frontend/scripts/`.
+5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (skill **`temp-scaffold`**). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `frontend/scripts/`.
 
 ## Frontend (ELO)
 
@@ -49,9 +49,9 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 
 - Java 21 / Spring Boot 3.5 / Maven
 - **In git:** `SpringExamApplication.java`, `SpringExamApplicationTests.java` (**alleen** `contextLoads` — niet verder vullen), `resources/.gitkeep`, minimale `application.properties` (naam + poort)
-- **Lokaal (gitignored):** overige classes, **overige tests**, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
+- **Lokaal (gitignored):** overige classes, **overige tests**, `backend/.temp/` (http + xml; `.gitkeep` wél in git), `application-local.properties`, `schema.sql`/`data.sql`, …
 - **Conventie:** sandbox-config → `application-local.properties` + Spring profile **`local`** (`spring-boot-maven-plugin` in `backend/pom.xml` zet `<profiles><profile>local</profile></profiles>`)
-- HTTP Client: `backend/http/` (lokaal; environment **local**)
+- HTTP Client: `backend/.temp/http/` (lokaal; environment **local**)
 - Actieve sandbox-slice: **Core / ticketdesk** (`orders/` — DI, profiles, lazy; zie `.temp/…-core-checkout-study.md`)
 - Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
@@ -69,7 +69,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 - `.cursor/rules/`, `.cursor/skills/`, `.cursor/hooks/` — Cursor enforcement + how-to
 - `scripts/append-session-audit.py` — sessielog ensure/append
 - `.audit/` — sessielogs (niet committen behalve `.gitkeep`)
-- `.temp/` — ad-hoc scripts (niet committen behalve `.gitkeep` / conventie-README); naam `YYYY-MM-DD-slug` + header
+- `.temp/` — ad-hoc scripts/notes (niet committen behalve `.gitkeep`; conventie in skill **`temp-scaffold`**)
 
 ## Werkafspraken
 

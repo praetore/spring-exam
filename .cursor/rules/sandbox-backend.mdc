@@ -1,6 +1,6 @@
 ---
 description: Backend sandbox — wat in git mag; smoke-test niet uitbreiden
-globs: backend/src/**/*.java,backend/src/main/resources/**,backend/http/**
+globs: backend/src/**/*.java,backend/src/main/resources/**,backend/.temp/**
 alwaysApply: false
 ---
 
@@ -17,14 +17,14 @@ alwaysApply: false
 
 - Overige classes onder `io.praetore.springexam` (jdbc, shop, …)
 - **Nieuwe/gegenereerde tests** → eigen class onder `src/test/java/io/praetore/springexam/…` (niet in `SpringExamApplicationTests`)
-- `application-local.properties`, `schema.sql`/`data.sql`, `backend/http/`
+- `application-local.properties`, `schema.sql`/`data.sql`, `backend/.temp/` (http + filesystem-xml; alleen `.gitkeep` in git)
 
 ## Agent-gedrag
 
 1. Vul `SpringExamApplicationTests` **niet** verder.
 2. Commit/stage geen gitignored sandbox- of testbestanden.
 3. Sandbox-config → profile `local` / `application-local.properties`.
-4. **HTTP (`backend/http/*.http`):** per request een `#`-leercomment (natuurlijke taal, geen label `Opsteken:`) — zie skill **`sandbox-demo`**.
+4. **HTTP (`backend/.temp/http/*.http`):** per request een `#`-leercomment (natuurlijke taal, geen label `Opsteken:`) — zie skill **`sandbox-demo`**.
 5. **Nieuwe sandbox-slice:** eerst vragen of de oude weg moet (tenzij user dat al zei); **altijd** een `.temp/…-study.md` meeleveren (sjabloon in skill).
 6. **Packages:** submapjes per architectuurlaag (niet alles plat in één package) — zie skill **`sandbox-demo`**.
 7. **Domein:** praktisch/serieus (mini-app), geen schoolse demo’s (cat/dog, `/api/…/lesson`) — zie skill.

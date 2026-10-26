@@ -69,8 +69,8 @@ SIGNs hier zijn MUST + pointer; procedure niet verdubbelen.
 **Instruction:**
 1. Plaats onder **`.temp/`**.
 2. **Niet** in `scripts/` — die map is voor vaste tooling (`append-session-audit.py`, frontend `ensure-questions.mjs`).
-3. Commit geen inhoud van `.temp/` behalve `.temp/.gitkeep` + conventie-`README.md`. Geen inventarisbestand: throwaways hebben datum in de naam + header (zie `.temp/README.md`).
-4. Verplaats naar `scripts/` alleen op verzoek **óf** na SIGN #6.
+3. Commit geen inhoud van `.temp/` behalve `.temp/.gitkeep`. Geen inventaris-README in `.temp/`: throwaways hebben datum in de naam + header — conventie in skill **`temp-scaffold`**.
+4. Verplaats naar `scripts/` alleen op verzoek **óf** na SIGN #4.
 **Reason:** Voorkomt vervuiling van vaste tooling.
 **Provenance:** Adapted from rws, 29-09-2026
 

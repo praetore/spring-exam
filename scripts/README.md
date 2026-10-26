@@ -1,6 +1,6 @@
 # Scripts (vaste agent-tooling)
 
-Ad-hoc helpers horen in **`.temp/`** (zie `.temp/README.md`), niet hier (GUARDRAILS Pattern 5).
+Ad-hoc helpers horen in **`.temp/`** (skill **`temp-scaffold`**), niet hier (GUARDRAILS Pattern 5).
 
 | Script | Rol |
 |--------|-----|

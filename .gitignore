@@ -40,8 +40,9 @@ backend/src/main/java/io/praetore/springexam/**
 # Tests: alleen de minimale smoke-test in git; overige gegenereerde tests lokaal
 backend/src/test/java/io/praetore/springexam/**
 !backend/src/test/java/io/praetore/springexam/SpringExamApplicationTests.java
-# IntelliJ HTTP Client requests (horen bij lokale demo's)
-backend/http/
+# Lokale sandbox-artifacts: HTTP Client + filesystem-XML e.d. (alleen .gitkeep in git)
+backend/.temp/*
+!backend/.temp/.gitkeep
 # Runtime resources: map + minimale application.properties in git; rest lokaal
 backend/src/main/resources/**
 !backend/src/main/resources/.gitkeep
@@ -58,7 +59,7 @@ frontend/src/data/questions.json
 !.audit/.gitkeep
 .temp/*
 !.temp/.gitkeep
-!.temp/README.md
+
 .env
 .env.*
 **/__pycache__/
