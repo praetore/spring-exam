@@ -13,6 +13,7 @@ GUARDRAILS **Pattern 5** + SIGN #4.
 
 - Ad-hoc scripts / merge-helpers
 - **Gap-cheatsheets** na een oefenexamen (bijv. `2026-10-23-exam-cheatsheet.md`)
+- **Sandbox study-docs** (architectuur + concept→code; sjabloon in skill `sandbox-demo`, bijv. `2026-10-26-core-checkout-study.md`)
 - Tijdelijke exports / parse-output van Udemy-results
 
 **Niet hier:** `EXAMEN.md` of andere vaste syllabus — die blijven in de repo-root (git).

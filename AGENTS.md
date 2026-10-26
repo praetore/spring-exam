@@ -31,7 +31,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 ## Workflow voor agents
 
 1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`** (o.a. `backend/http/` met `# Opsteken:`-comments) + demo-code in `backend/` onder `io.praetore.springexam` (**gitignored**, behalve `SpringExamApplication` + minimale `SpringExamApplicationTests`). Houd voorbeelden klein en examgericht. **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
+2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`**: demo-code onder `io.praetore.springexam`, `backend/http/` met leercomments, én standaard een `.temp/…-study.md` (architectuur-sjabloon in de skill). Domein: **serieus/praktisch** (zoals ticketdesk-checkout), geen schoolse lesjes-API. Bij een **nieuwe** slice: eerst vragen of de oude sandbox weg moet (tenzij al expliciet gezegd). **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
 3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
 5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (zie `.temp/README.md`). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `frontend/scripts/`.
@@ -52,7 +52,7 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 - **Lokaal (gitignored):** overige classes, **overige tests**, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
 - **Conventie:** sandbox-config (JDBC/JPA/Actuator) → `application-local.properties` + Spring profile **`local`** (run config **Sandbox** zet `-Dspring-boot.run.profiles=local`)
 - HTTP Client: `backend/http/` (lokaal; environment **local**)
-- Actieve sandbox-slice: **TX** (`tx/` — proxy/self-invocation/rollback; JPA+JDBC blijven beschikbaar) — daarna Actuator
+- Actieve sandbox-slice: **Core / ticketdesk** (`orders/` — DI, profiles, lazy; zie `.temp/…-core-checkout-study.md`)
 - Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run "-Dspring-boot.run.profiles=local"`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
