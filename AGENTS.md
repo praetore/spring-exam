@@ -50,10 +50,10 @@ Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](
 - Java 21 / Spring Boot 3.5 / Maven
 - **In git:** `SpringExamApplication.java`, `SpringExamApplicationTests.java` (**alleen** `contextLoads` — niet verder vullen), `resources/.gitkeep`, minimale `application.properties` (naam + poort)
 - **Lokaal (gitignored):** overige classes, **overige tests**, `backend/http/`, `application-local.properties`, `schema.sql`/`data.sql`, …
-- **Conventie:** sandbox-config (JDBC/JPA/Actuator) → `application-local.properties` + Spring profile **`local`** (run config **Sandbox** zet `-Dspring-boot.run.profiles=local`)
+- **Conventie:** sandbox-config → `application-local.properties` + Spring profile **`local`** (`spring-boot-maven-plugin` in `backend/pom.xml` zet `<profiles><profile>local</profile></profiles>`)
 - HTTP Client: `backend/http/` (lokaal; environment **local**)
 - Actieve sandbox-slice: **Core / ticketdesk** (`orders/` — DI, profiles, lazy; zie `.temp/…-core-checkout-study.md`)
-- Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run "-Dspring-boot.run.profiles=local"`
+- Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
 ## IntelliJ run configs (`.run/`)

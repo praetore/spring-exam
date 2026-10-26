@@ -30,11 +30,11 @@ Vragen staan lokaal in `frontend/src/data/questions.json` (gitignored). Bij ontb
 
 ```bash
 cd backend
-mvn spring-boot:run "-Dspring-boot.run.profiles=local"
+mvn spring-boot:run
 ```
 
 - Java 21, Spring Boot 3.5
-- Minimale `application.properties` in git; sandbox-config in **`application-local.properties`** (gitignored, profile `local`)
+- Minimale `application.properties` in git; sandbox-config in **`application-local.properties`** (gitignored). Profile `local` via `spring-boot-maven-plugin` in `pom.xml`.
 - Oefencode onder `io.praetore.springexam` is grotendeels gitignored (behalve `SpringExamApplication` + smoke-test)
 
 IntelliJ: run configs **Oefenexamen**, **Sandbox**, **Docker Compose**, **Full stack** (`.run/`).
