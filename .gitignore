@@ -1,5 +1,5 @@
 target/
-backend/target/
+sandbox/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -10,6 +10,9 @@ backend/target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/dataSources/
 *.iws
 *.iml
 *.ipr
@@ -33,26 +36,26 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### Backend sandbox (lokaal oefenen) ###
+### Sandbox (lokaal oefenen) ###
 # Alles onder het app-package behalve de Boot-entrypoint
-backend/src/main/java/io/praetore/springexam/**
-!backend/src/main/java/io/praetore/springexam/SpringExamApplication.java
+sandbox/src/main/java/io/praetore/springexam/**
+!sandbox/src/main/java/io/praetore/springexam/SpringExamApplication.java
 # Tests: alleen de minimale smoke-test in git; overige gegenereerde tests lokaal
-backend/src/test/java/io/praetore/springexam/**
-!backend/src/test/java/io/praetore/springexam/SpringExamApplicationTests.java
+sandbox/src/test/java/io/praetore/springexam/**
+!sandbox/src/test/java/io/praetore/springexam/SpringExamApplicationTests.java
 # Lokale sandbox-artifacts: HTTP Client + filesystem-XML e.d. (alleen .gitkeep in git)
-backend/.temp/*
-!backend/.temp/.gitkeep
+sandbox/.temp/*
+!sandbox/.temp/.gitkeep
 # Runtime resources: map + minimale application.properties in git; rest lokaal
-backend/src/main/resources/**
-!backend/src/main/resources/.gitkeep
-!backend/src/main/resources/application.properties
+sandbox/src/main/resources/**
+!sandbox/src/main/resources/.gitkeep
+!sandbox/src/main/resources/application.properties
 
-### Frontend (Vite) ###
-frontend/node_modules/
-frontend/dist/
+### Exam ELO (Vite) ###
+exam/node_modules/
+exam/dist/
 # Lokale ELO-vragenbank (schema + example wél in git)
-frontend/src/data/questions.json
+exam/src/data/questions.json
 
 ### Agent tooling ###
 .audit/*

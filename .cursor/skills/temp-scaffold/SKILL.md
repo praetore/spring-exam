@@ -3,7 +3,7 @@ name: temp-scaffold
 description: >-
   Ad-hoc scaffolding onder repo-root .temp/ (Pattern 5): gap-cheatsheets,
   study-docs, throwaway scripts. Gebruik bij nieuwe .temp-bestanden, cheatsheets,
-  of twijfel of iets in scripts/ vs .temp/ hoort. Niet voor backend/.temp/ (HTTP/XML).
+  of twijfel of iets in scripts/ vs .temp/ hoort. Niet voor sandbox/.temp/ (HTTP/XML).
 ---
 
 # `.temp/` — disposable scaffolding
@@ -13,9 +13,9 @@ GUARDRAILS **Pattern 5** + SIGN #4.
 | Map | Wat |
 |-----|-----|
 | **`.temp/`** (repo-root) | Eenmalige / experimentele agent-helpers **én** persoonlijke exam-gap notes — **niet committen** (behalve `.temp/.gitkeep`) |
-| **`backend/.temp/`** | Sandbox HTTP + filesystem-XML — zie skill **`sandbox-demo`** (alleen `backend/.temp/.gitkeep` in git) |
+| **`sandbox/.temp/`** | Sandbox HTTP + filesystem-XML — zie skill **`sandbox-demo`** (alleen `sandbox/.temp/.gitkeep` in git) |
 | **`scripts/`** | Vaste tooling (`append-session-audit.py`) |
-| **`frontend/scripts/`** | Vaste FE-tooling (`ensure-questions.mjs`) |
+| **`exam/scripts/`** | Vaste FE-tooling (`ensure-questions.mjs`) |
 | **Repo-root** | Vaste syllabus/docs (`EXAMEN.md`, `AGENTS.md`, …) — **geen** ad-hoc cheatsheets |
 
 ## Wat hoort in root-`.temp/` (voorbeelden)
@@ -25,7 +25,7 @@ GUARDRAILS **Pattern 5** + SIGN #4.
 - **Sandbox study-docs** (architectuur + concept→code; sjabloon in skill `sandbox-demo`, bijv. `2026-10-26-core-checkout-study.md`)
 - Tijdelijke exports / parse-output van Udemy-results
 
-**Niet hier:** `EXAMEN.md` of andere vaste syllabus; ook **geen** backend HTTP/filesystem-XML (dat is `backend/.temp/`).
+**Niet hier:** `EXAMEN.md` of andere vaste syllabus; ook **geen** backend HTTP/filesystem-XML (dat is `sandbox/.temp/`).
 
 ## Conventie (geen aparte inventaris / geen root-README)
 

@@ -43,7 +43,7 @@ Laatst bijgewerkt: 29-09-2026
 
 | Pattern | Wat er is | Gat |
 |---------|-----------|-----|
-| [CLI-First Skill Design](https://www.agentic-patterns.com/patterns/cli-first-skill-design) | `append-session-audit.py`, `frontend/scripts/ensure-questions.mjs` | Geen Ajv-CLI validate-bank script |
+| [CLI-First Skill Design](https://www.agentic-patterns.com/patterns/cli-first-skill-design) | `append-session-audit.py`, `exam/scripts/ensure-questions.mjs` | Geen Ajv-CLI validate-bank script |
 | [Output Verification Loop](https://www.agentic-patterns.com/patterns/output-verification-loop) | `local-verify.mdc` | Agent draait checks niet altijd vóór “klaar” |
 | [Plan-Then-Execute](https://www.agentic-patterns.com/patterns/plan-then-execute-pattern) | Cursor Plan mode | Geen projectbrede “altijd eerst plannen”-rule |
 | [Skill Library Evolution](https://www.agentic-patterns.com/patterns/skill-library-evolution) | skill `elo-questions` | Geen promote-lus `.temp/` → script |

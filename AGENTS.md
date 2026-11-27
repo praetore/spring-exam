@@ -22,44 +22,44 @@ Examenvoorbereiding in twee lagen:
 
 | Laag | Pad | Rol |
 |------|-----|-----|
-| **ELO-quiz** | `frontend/` | Alle examenvragen, scoring, ELO (lokaal in de browser) |
-| **Spring-sandbox** | `backend/` | Code om Spring-concepten te oefenen (geen quiz-API) |
+| **ELO-quiz** | `exam/` | Alle examenvragen, scoring, ELO (lokaal in de browser) |
+| **Spring-sandbox** | `sandbox/` | Code om Spring-concepten te oefenen (geen quiz-API) |
 | **Infra** | `infra/` | Optioneel Postgres wanneer je data/TX in de sandbox oefent |
 
 Volledig overzicht examenonderdelen (+ Java/Servlet-basiskennis): [`EXAMEN.md`](EXAMEN.md) — **blijft in repo-root** (syllabus).
 
 ## Workflow voor agents
 
-1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `frontend/public/schema/`. Schrijf naar `frontend/src/data/questions.json` (**gitignored** — niet committen).
-2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`**: demo-code onder `io.praetore.springexam`, HTTP in `backend/.temp/http/`, filesystem-XML e.d. in `backend/.temp/xml/`, én standaard een root-`.temp/…-study.md`. Domein: **serieus/praktisch** (zoals ticketdesk-checkout), geen schoolse lesjes-API. Bij een **nieuwe** slice: eerst vragen of de oude sandbox weg moet (tenzij al expliciet gezegd). **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
-3. **Niet** de quiz via de backend serveren — die blijft frontend-only.
+1. **ELO genereren:** op verzoek → skill **`elo-questions`** / schema’s onder `exam/public/schema/`. Schrijf naar `exam/src/data/questions.json` (**gitignored** — niet committen).
+2. **Spring oefenen:** op verzoek → skill **`sandbox-demo`**: demo-code onder `io.praetore.springexam`, HTTP in `sandbox/.temp/http/`, filesystem-XML e.d. in `sandbox/.temp/xml/`, én standaard een root-`.temp/…-study.md`. Domein: **serieus/praktisch** (zoals ticketdesk-checkout), geen schoolse lesjes-API. Bij een **nieuwe** slice: eerst vragen of de oude sandbox weg moet (tenzij al expliciet gezegd). **Niet** `SpringExamApplicationTests` uitbreiden — nieuwe tests in aparte (gitignored) testclasses.
+3. **Niet** de quiz via de backend serveren — die blijft exam-only.
 4. **Sessie-audit:** zie GUARDRAILS Pattern 1 + `session-audit.mdc` (`.audit/`).
-5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (skill **`temp-scaffold`**). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `frontend/scripts/`.
+5. **Ad-hoc (Pattern 5):** scripts, gap-cheatsheets na oefenexamens, parse-helpers → **`.temp/YYYY-MM-DD-slug`** (skill **`temp-scaffold`**). **Niet** in repo-root als vaste docs. Vaste tooling → `scripts/` of `exam/scripts/`.
 
-## Frontend (ELO)
+## Exam ELO
 
 - Vite + React + TypeScript + Ajv
-- Vragen (lokaal): `frontend/src/data/questions.json` (gitignore)
-- Seed: `frontend/src/data/questions.example.json` → `npm run predev` / Vite-plugin kopieert indien ontbreekt
-- Schema: `frontend/public/schema/exam-question.schema.json` (+ bank-schema)
+- Vragen (lokaal): `exam/src/data/questions.json` (gitignore)
+- Seed: `exam/src/data/questions.example.json` → `npm run predev` / Vite-plugin kopieert indien ontbreekt
+- Schema: `exam/public/schema/exam-question.schema.json` (+ bank-schema)
 - ELO-state: `localStorage` (`spring-exam-elo`)
-- Start: `cd frontend && npm run dev` → http://localhost:5173
+- Start: `cd exam && npm run dev` → http://localhost:5173
 
-## Backend (sandbox)
+## Sandbox
 
 - Java 21 / Spring Boot 3.5 / Maven
 - **In git:** `SpringExamApplication.java`, `SpringExamApplicationTests.java` (**alleen** `contextLoads` — niet verder vullen), `resources/.gitkeep`, minimale `application.properties` (naam + poort)
-- **Lokaal (gitignored):** overige classes, **overige tests**, `backend/.temp/` (http + xml; `.gitkeep` wél in git), `application-local.properties`, `schema.sql`/`data.sql`, …
-- **Conventie:** sandbox-config → `application-local.properties` + Spring profile **`local`** (`spring-boot-maven-plugin` in `backend/pom.xml` zet `<profiles><profile>local</profile></profiles>`)
-- HTTP Client: `backend/.temp/http/` (lokaal; environment **local**)
+- **Lokaal (gitignored):** overige classes, **overige tests**, `sandbox/.temp/` (http + xml; `.gitkeep` wél in git), `application-local.properties`, `schema.sql`/`data.sql`, …
+- **Conventie:** sandbox-config → `application-local.properties` + Spring profile **`local`** (`spring-boot-maven-plugin` in `sandbox/pom.xml` zet `<profiles><profile>local</profile></profiles>`)
+- HTTP Client: `sandbox/.temp/http/` (lokaal; environment **local**)
 - Actieve sandbox-slice: **Core / ticketdesk** (`orders/` — DI, profiles, lazy; zie `.temp/…-core-checkout-study.md`)
-- Start: IntelliJ **Sandbox** of `cd backend && mvn spring-boot:run`
+- Start: IntelliJ **Sandbox** of `cd sandbox && mvn spring-boot:run`
 - Let op Boot 3 / Spring 6 vs exammateriaal (5.3 / Boot 2.x)
 
 ## IntelliJ run configs (`.run/`)
 
-- **Oefenexamen** — ELO-quiz (`frontend/`)
-- **Sandbox** — Maven `spring-boot:run` (`backend/`)
+- **Oefenexamen** — ELO-quiz (`exam/`)
+- **Sandbox** — Maven `spring-boot:run` (`sandbox/`)
 - **Docker Compose** — Postgres indien nodig voor sandbox-oefeningen
 - **Full stack** — alle drie
 

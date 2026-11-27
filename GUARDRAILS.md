@@ -41,7 +41,7 @@ SIGNs hier zijn MUST + pointer; procedure niet verdubbelen.
 
 **Allowed (zonder extra goedkeuring):**
 - Read: projectbronnen, tests, docs, `.cursor/`, `scripts/`, schemas
-- Write: frontend/backend binnen de gevraagde scope; `.audit/session-*.log`; `.temp/`; lokale `frontend/src/data/questions.json` (gitignored); lokale sandbox-classes/tests onder `io.praetore.springexam` (gitignored)
+- Write: exam/sandbox binnen de gevraagde scope; `.audit/session-*.log`; `.temp/`; lokale `exam/src/data/questions.json` (gitignored); lokale sandbox-classes/tests onder `io.praetore.springexam` (gitignored)
 
 **Forbidden / approval required:**
 - Secrets committen (`.env`, tokens, credentials)

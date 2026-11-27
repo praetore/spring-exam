@@ -6,8 +6,8 @@ Twee lagen:
 
 | Laag | Map | Doel |
 |------|-----|------|
-| **Oefenexamen (ELO)** | [`frontend/`](frontend/) | Meerkeuzevragen in de browser, lokaale ELO-scoring |
-| **Sandbox** | [`backend/`](backend/) | Kleine Spring Boot-demo’s om concepten te oefenen |
+| **Oefenexamen (ELO)** | [`exam/`](exam/) | Meerkeuzevragen in de browser, lokaale ELO-scoring |
+| **Sandbox** | [`sandbox/`](sandbox/) | Kleine Spring Boot-demo’s om concepten te oefenen |
 | **Infra** | [`infra/`](infra/) | Optioneel Postgres voor data/TX-oefeningen |
 
 Syllabus & Java/Servlet-basiskennis: [`EXAMEN.md`](EXAMEN.md).
@@ -24,7 +24,7 @@ npm run dev
 
 Open http://localhost:5173.
 
-Vragen staan lokaal in `frontend/src/data/questions.json` (gitignored). Bij ontbreken kopieert `npm run predev` / de Vite-plugin vanuit `questions.example.json`.
+Vragen staan lokaal in `exam/src/data/questions.json` (gitignored). Bij ontbreken kopieert `npm run predev` / de Vite-plugin vanuit `questions.example.json`.
 
 ### Sandbox (backend)
 
@@ -42,8 +42,8 @@ IntelliJ: run configs **Oefenexamen**, **Sandbox**, **Docker Compose**, **Full s
 ## Repo-indeling
 
 ```
-frontend/     Vite + React + TypeScript + Ajv (ELO-quiz)
-backend/      Spring Boot sandbox
+exam/     Vite + React + TypeScript + Ajv (ELO-quiz)
+sandbox/      Spring Boot sandbox
 infra/        Docker Compose (Postgres)
 EXAMEN.md     Examengids / checklist
 AGENTS.md     Instructies voor AI-agents

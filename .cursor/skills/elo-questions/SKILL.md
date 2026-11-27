@@ -10,12 +10,12 @@ description: >-
 
 ## Bron van waarheid
 
-1. Lees **eerst** `frontend/public/schema/exam-question.schema.json` (item) en eventueel `exam-question-bank.schema.json` (array).
+1. Lees **eerst** `exam/public/schema/exam-question.schema.json` (item) en eventueel `exam-question-bank.schema.json` (array).
 2. Lees `EXAMEN.md` voor syllabus-context van het gevraagde topic.
-3. Doelbestand: `frontend/src/data/questions.json` (gitignored).
-4. Seed (wél in git): `frontend/src/data/questions.example.json`.
+3. Doelbestand: `exam/src/data/questions.json` (gitignored).
+4. Seed (wél in git): `exam/src/data/questions.example.json`.
 
-Als `questions.json` ontbreekt: `node frontend/scripts/ensure-questions.mjs` of start Vite/`npm run predev`.
+Als `questions.json` ontbreekt: `node exam/scripts/ensure-questions.mjs` of start Vite/`npm run predev`.
 
 ## Ad-hoc helpers (Pattern 5)
 

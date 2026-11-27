@@ -13,11 +13,11 @@ alwaysApply: true
 
 | Scope | cwd | Check |
 |-------|-----|-------|
-| Frontend | `frontend/` | `npm run lint` |
-| Backend | `backend/` | `mvn -q -DskipTests compile` of relevante test |
+| Exam ELO | `exam/` | `npm run lint` |
+| Sandbox | `sandbox/` | `mvn -q -DskipTests compile` of relevante test |
 | AI-tooling only | repo-root | geen FE/BE-lint verplicht |
 
-## Smoke-test backend
+## Smoke-test sandbox
 
 - `SpringExamApplicationTests` mag alleen `contextLoads` houden (in git).
 - Extra/gegenereerde tests → aparte classes (gitignored); niet in het smoke-bestand.
